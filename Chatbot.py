@@ -17,7 +17,7 @@ from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
 load_dotenv()
 
-#Here the user inputs something, and the AI returns with a message after being fed the files
+#to get the conversation chain in the message
 def get_conversation_chain(context):
     llm = ChatOpenAI(temperature=0, )
     messages = ChatPromptTemplate.from_messages([
@@ -82,7 +82,7 @@ def main():
         answer = st.session_state.chain({"question":question})
         st.session_state.conversations.append({'user':question})
         st.session_state.conversations.append({'assistant':answer['text']})
-    # to dogit
+    # to build the messaging system
     for conversation in st.session_state.conversations:
         for key,value in conversation.items():
             if key == 'user':
